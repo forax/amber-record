@@ -1,3 +1,3 @@
-module fr.umlv.record{ 
+module fr.umlv.record { 
 
 }
