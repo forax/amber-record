@@ -11,5 +11,10 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install and build
       run: |
+        echo "install OpenJDK 11"
+        sudo apt-get install openjdk-11-jdk-headless
+        export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+        export PATH=$JAVA_HOME/bin:$PATH
+        echo "run pro"
         java pro_wrapper.java version
         ./pro/bin/pro
