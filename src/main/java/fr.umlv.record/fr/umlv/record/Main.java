@@ -11,8 +11,8 @@ public class Main {
   	var circle = new Circle(p, 2);
   	System.out.println(circle);
   	
-  	for(var m: Circle.class.getRecordAccessors()) {
-  		System.out.println(m);
+  	for(var c: Circle.class.getRecordComponents()) {
+  		System.out.println(c);
   	}
   }
 }
