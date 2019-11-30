@@ -1,5 +1,5 @@
 package fr.umlv.record;
-
+/*
 import java.util.Iterator;
 import java.util.function.IntBinaryOperator;
 
@@ -28,3 +28,4 @@ public class AnotherExprExample {
 		System.out.println(expr);
 	}
 }
+*/

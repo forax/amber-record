@@ -5,8 +5,7 @@ import java.util.Objects;
 public class RecordConstructorExample {
   record Foo(Object o, int v) {
   	Foo(Object o) {
-  		this.o = o;
-  		this.v = 0;
+  	  this(o, 0);
   	}
   	
   	public Foo {

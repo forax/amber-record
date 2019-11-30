@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.IntBinaryOperator;
 
+/*
 @SuppressWarnings("preview")
 public sealed interface Expr {
   public record Op(Expr left, char c, Expr right, IntBinaryOperator op)
@@ -32,3 +33,4 @@ public sealed interface Expr {
   	 System.out.println(expr);
   }
 }
+*/

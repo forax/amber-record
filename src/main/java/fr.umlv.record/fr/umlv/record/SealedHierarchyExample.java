@@ -1,7 +1,7 @@
 package fr.umlv.record;
 
 import java.util.Iterator;
-
+/*
 public class SealedHierarchyExample {
 	sealed interface Expr {}
 	record Value(int value) implements Expr {}
@@ -31,3 +31,4 @@ public class SealedHierarchyExample {
   	 System.out.println(expr);
   }
 }
+*/
