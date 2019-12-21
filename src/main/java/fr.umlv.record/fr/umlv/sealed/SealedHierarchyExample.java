@@ -1,7 +1,8 @@
-package fr.umlv.record;
+package fr.umlv.sealed;
 
 import java.util.Iterator;
-/*
+import java.util.Scanner;
+
 public class SealedHierarchyExample {
 	sealed interface Expr {}
 	record Value(int value) implements Expr {}
@@ -27,8 +28,7 @@ public class SealedHierarchyExample {
   }
   
   public static void main(String[] args) {
-  	 var expr = parse(new java.util.Scanner("* + 2 3 5"));
+  	 var expr = parse(new Scanner("* + 2 3 5"));
   	 System.out.println(expr);
   }
 }
-*/
