@@ -18,7 +18,7 @@ resolver.
     )
 
 compiler.
-    sourceRelease(14).
+    sourceRelease(15).
     enablePreview(true)
     /*.*/
 //     rawArguments(
