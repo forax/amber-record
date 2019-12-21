@@ -1,0 +1,12 @@
+language: java
+jdk: openjdk11
+
+env:
+  - PRO_SPECIAL_BUILD='early-access-sealed'
+
+install:
+  - java pro_wrapper.java version
+
+script:
+  - ./pro/bin/java build.java
+  
