@@ -1,9 +1,9 @@
-package fr.umlv.record;
-/*
+package fr.umlv.sealed;
+
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.function.IntBinaryOperator;
 
-@SuppressWarnings("preview")
 public class AnotherExprExample {
 	public sealed interface Expr {
 		static Expr parse(Iterator<String> it) {
@@ -24,8 +24,8 @@ public class AnotherExprExample {
 
 	}
 	public static void main(String[] args) {
-		var expr = Expr.parse(new java.util.Scanner("* + 2 3 5"));
+		var expr = Expr.parse(new Scanner("* + 2 3 5"));
 		System.out.println(expr);
 	}
 }
-*/
+
