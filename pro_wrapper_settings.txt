@@ -1,1 +1,1 @@
-PRO_SPECIAL_BUILD=early-access-record
+PRO_SPECIAL_BUILD=early-access-sealed
