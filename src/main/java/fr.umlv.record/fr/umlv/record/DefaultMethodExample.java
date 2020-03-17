@@ -9,7 +9,7 @@ public interface DefaultMethodExample {
 	}
 	
   record Foo(int x) implements I {
-    
+    // empty
   }
   
   public static void main(String[] args) {

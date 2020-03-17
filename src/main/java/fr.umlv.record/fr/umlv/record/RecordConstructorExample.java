@@ -14,6 +14,7 @@ public class RecordConstructorExample {
   }
   
   public static void main(String[] args) {
-  	new Foo(null);
+  	var foo = new Foo(null);
+  	System.out.println(foo);
   }
 }

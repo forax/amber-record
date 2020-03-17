@@ -7,6 +7,6 @@ record CompactConstructor(String s) {
 	
 	public static void main(String[] args) {
 		var compact = new CompactConstructor("foo");
-		
+		System.out.println(compact);
 	}
 }

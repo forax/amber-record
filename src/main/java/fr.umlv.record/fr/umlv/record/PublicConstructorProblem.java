@@ -2,7 +2,7 @@ package fr.umlv.record;
 
 public class PublicConstructorProblem {
   private record Foo(int x) {
-  	
+  	// empty
   }
   
   public static Object foo() {

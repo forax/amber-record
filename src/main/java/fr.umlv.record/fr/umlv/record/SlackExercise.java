@@ -26,7 +26,6 @@ import java.util.stream.Collector;
 // A User has to subscribe to a Channel to be able to send a message to it.
 // There is an event system so one can gather statistics or create an index from the messages.
 // Only the MessageManager is mutable, everything else is non mutable.
-@SuppressWarnings("preview")
 public interface SlackExercise {
   @FunctionalInterface
   interface Receiver {

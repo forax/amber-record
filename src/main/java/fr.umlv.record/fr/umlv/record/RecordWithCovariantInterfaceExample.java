@@ -6,6 +6,6 @@ public class RecordWithCovariantInterfaceExample {
   }
   
   public record Foo(String name) implements Namable {
-    
+    // empty
   }
 }
