@@ -3,13 +3,15 @@ package fr.umlv.record;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.flatMapping;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toSet;
 
-import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.stream.Collector;
 // A User has to subscribe to a Channel to be able to send a message to it.
 // There is an event system so one can gather statistics or create an index from the messages.
 // Only the MessageManager is mutable, everything else is non mutable.
+@SuppressWarnings("preview")
 public interface SlackExercise {
   @FunctionalInterface
   interface Receiver {
@@ -59,6 +62,7 @@ public interface SlackExercise {
       return unmodifiableSet(manager.subscriptionMap.getOrDefault(this, Set.of()));
     }
     
+    @Override
     public void dispatch(MessageManager manager, Message message) {
       requireNonNull(manager);
       requireNonNull(message);
@@ -83,6 +87,7 @@ public interface SlackExercise {
       return unmodifiableSet(manager.subscribedMap.getOrDefault(this, Set.of()));
     }
     
+    @Override
     public void dispatch(MessageManager manager, Message message) {
       Storage.super.dispatch(manager, message);
     }
@@ -97,7 +102,7 @@ public interface SlackExercise {
   }
   
   interface EventListener {
-    public record Event(Storage storage, Message message) {}
+    public record Event(Storage storage, Message message) { /* empty */ }
     
     void onReceive(Event event);
   }
@@ -129,7 +134,7 @@ public interface SlackExercise {
     }
 
     static Aggregator<Map<String, Set<Message>>> index() {
-      record Pair(String token, Message message) {}
+      record Pair(String token, Message message) { /* empty */ }
       return aggregate(flatMapping(event -> Arrays.stream(event.message.text.split(" |\\t|\\n")).filter(token -> token.length() > 2).map(token -> new Pair(token, event.message)),
           groupingBy(pair -> pair.token.toLowerCase(), mapping(Pair::message, toSet()))));
     }
