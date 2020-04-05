@@ -7,17 +7,18 @@
 
 // ## Algebraic Data Types
 // Composite type of product types and sum types
-// - product types  (tuple)
-//   (A x B x C)
-// - sum type  (union)
-//   (A | B | C)
+// - product types (A x B x C)
+// - sum type  (A | B | C)
 
 // ## Algebraic Data Types in OCaml
 // Examples of product types and sum types in OCaml
 // ```ocaml
+// (* record *)
 // type car = { brand: string; color: string; };;
 // type bus = { brand: string; height: float; };;
-//
+// ```
+// ```ocaml
+// (* variant *)
 // type vehicle = Car of car | Bus of bus ;;
 // ```
 
@@ -46,23 +47,40 @@
 // - product types  (class)
 //   ```java
 //   class Bus implements Vehicle {
-//     String name; double height;
+//     String name;
+//     double height;
 //   }
 //   ```
 
 // ## Differences FP vs OOP
-//
-// OOP defines open types, closed functions (methods)
-// FP defines closed types, open functions
+// - OOP defines
+//   - open types,
+//   - closed functions (methods)
+// - FP defines
+//   - closed types,
+//   - open functions
 
-// ## Pattern matching: behaviors on close types
-//
-// |                |     Function     |     Method     |
-// |                |      (open)      |     (close)    |
-// | -------------- | ---------------- | -------------- |
-// | Open interface | pattern matching |  polymorphism  |
-// | Close ???      | pattern matching |  polymorphism  |
-// | -------------- | ---------------- | -------------- |
+// ## OOP == polymorphism
+// Actual: OOP
+
+// | Behaviors      | Function             | Method         |
+// | -------------- | -------------------- | -------------- |
+// | class POV      | outside a class      | inside a class |
+// | Open interface | visitor / instanceof |  polymorphism  |
+
+// > having open interfaces has a cost
+
+// ## ![Rick Deckard](images/blade-runner-2049.jpg)
+
+// ## With Pattern matching
+// Proposed: fusion OOP + FP
+
+// | Behaviors       | Function         | Method         |
+// | --------------- | ---------------- | -------------- |
+// | Closed type???  | pattern matching |  polymorphism  |
+// | Open interface  | pattern matching |  polymorphism  |
+
+// # ![Rick Deckard](images/blade-runner-rick-deckard.jpg)
 
 // # Pattern Matching in Java
 
