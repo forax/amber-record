@@ -456,9 +456,9 @@ class publish {
   
   private static record Config(Optional<Kind> index, Set<Kind> kinds, Map<Kind, Path> folderMap) {
     private enum Kind {
-      MARKDOWN(".md", build::writeMarkDown),
-      NOTEBOOK(".ipynb", build::writeJupyter),
-      SLIDESHOW(".ipynb", build::writeJupyterSlideshow),
+      MARKDOWN(".md", publish::writeMarkDown),
+      NOTEBOOK(".ipynb", publish::writeJupyter),
+      SLIDESHOW(".ipynb", publish::writeJupyterSlideshow),
       ;
       
       private static final Map<String, Kind> NAME_MAP = stream(values()).collect(Collectors.toMap(k -> k.propertyName, k -> k));
