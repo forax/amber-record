@@ -1,9 +1,19 @@
 language: java
 jdk: openjdk11
 
+services:
+  - docker
+
+before_install:
+  - sudo apt-get install npm
+  - docker build -f docker/Dockerfile -t forax/amber-record .
+  - docker run -d -p 8888:8888 forax/amber-record bash travis/script.sh
+
 install:
+  - npm install decktape
   - java pro_wrapper.java version
 
 script:
   - ./pro/bin/pro
-  
+  - npm bin
+  - java build/print_slideshow.java
