@@ -3,7 +3,12 @@
 
 // # Algebraic Data Types and Pattern Matching
 
+// ## Java Version
+System.out.println(Runtime.version());
+System.out.println(System.getProperty("java.home"));
+
 // # Algebraic Data Types and Where to find them ?
+// ![Fantastic Beast](images/fantastic-beasts.jpg)
 
 // ## Algebraic Data Types
 // Composite type of product types and sum types
@@ -68,7 +73,7 @@
 // | class POV      | outside a class      | inside a class |
 // | Open interface | visitor / instanceof |  polymorphism  |
 
-// > having open interfaces has a cost
+// > having open interfaces has a cost !
 
 // ## ![Rick Deckard](images/blade-runner-2049.jpg)
 
@@ -80,24 +85,21 @@
 // | Closed type???  | pattern matching |  polymorphism  |
 // | Open interface  | pattern matching |  polymorphism  |
 
-// # ![Rick Deckard](images/blade-runner-rick-deckard.jpg)
-
 // # Pattern Matching in Java
 
 // ## Plan
 // - expression switch (Java 12 to 14)
 // - record  (Java 14+)
 // - sealed interface (Java 15+)
-// - instanceof (Java 14+)
+// - instanceof enhancement (Java 14+)
 // - future ?
 
 // # Expression Switch
-// - enhance switch to be an expression
-// - fix C switch warts ?
+// - Enhance switch to be an expression too
+// - Fix C switch warts ?
 
 // ## What wrong with the C switch ?
-// `break` is easy to forget (fallthrough)
-// The scope of the local variable is weird
+// `break` is easy to forget (fallthrough) + weird scope
 void color(String vehicle) {
   switch(vehicle) {
     case "car":
@@ -113,7 +115,7 @@ void color(String vehicle) {
 }
 color("sedan");
 
-// ## Arrow Syntax
+// ## Arrow Syntax : Enhance existing switch
 // - avoid fallthrough: use curly braces
 // - allow comma separated values
 void color(String vehicle) {
@@ -131,8 +133,7 @@ void color(String vehicle) {
 color("sedan");
 
 // ## Expression Switch
-// switch can be used as an expression
-// `default` is mandatory !
+// switch can be used as an expression, `default` is mandatory !
 String color(String vehicle) {
   return switch(vehicle) {
     case "car", "sedan" -> {
@@ -165,14 +166,16 @@ void color(String vehicle) {
 // }
 // ```
 
-// we need to be able to deconstruct a class
+// We need to be able to deconstruct a class
 
 
 // # Record
 
-//
+// ## Example of Record
+// Declaration
 record Bus(String brand, double height) { }
 
+// Usage
 var bus = new Bus("imperial", 7);
 System.out.println(bus);
 
@@ -182,7 +185,6 @@ record Bus(String brand, double height) {
   // public Bus(String brand, double height) {
   //   ...
   // }
-
   // compact constructor
   public Bus {
     Objects.requireNonNull(brand);
@@ -192,7 +194,6 @@ record Bus(String brand, double height) {
 // ## equals, hashCode and toString
 // are automatically generated
 record Bus(String brand, double height) { }
-
 var bus1 = new Bus("imperial", 7);
 var bus2 = new Bus("imperial", 7);
 System.out.println(bus1.equals(bus2));
@@ -211,7 +212,6 @@ System.out.println(bus1.equals(bus2));
 
 // ## Reflection support
 record Bus(String brand, double height) { }
-
 var components = List.of(Bus.class.getRecordComponents());
 System.out.println(components);
 
@@ -227,10 +227,12 @@ System.out.println(components);
 
 // ## Closed hierarchy
 // Add a keyword `sealed` + a `permits` list
-record Car(String brand, String color) implements Vehicle { }
-record Bus(String brand, double height) implements Vehicle { }
-sealed interface Vehicle
-  permits Car, Bus { }
+// ```java
+// sealed interface Vehicle
+//   permits Car, Bus { }
+// record Car(String brand, String color) implements Vehicle { }
+// record Bus(String brand, double height) implements Vehicle { }
+// ```
 
 // ## Add inference of `permits` clause ?
 // The clause `permits` is inferred if everything in the same compilation unit
@@ -255,7 +257,8 @@ sealed interface Vehicle {
 
 // # Enhanced `instanceof`
 
-// Fix what's wrong + introduce pattern matching
+// - Introduce de-construction
+// - Fix the unnecessary cast
 
 // ## What wrong with the old instanceof ?
 // The cast is unnecessary.
@@ -266,7 +269,7 @@ record Bus(String brand, double height) {
     }
     var bus = (Bus) o;   // <-- that cast
     return brand.equals(bus.brand)
-        && Double.compare(height, bus.height) ==0;
+        && Double.compare(height, bus.height) == 0;
   }
 }
 
@@ -281,7 +284,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus bus
         && brand.equals(bus.brand)
-        && Double.compare(height, bus.height) ==0;
+        && Double.compare(height, bus.height) == 0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -293,7 +296,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus(String brand2, double height2)
       && brand.equals(brand2)
-      && Double.compare(height, height2) ==0;
+      && Double.compare(height, height2) == 0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -305,7 +308,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus(var brand2, var height2)
       && brand.equals(brand2)
-      && Double.compare(height, height2) ==0;
+      && Double.compare(height, height2) == 0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -318,7 +321,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o){
     if (o instanceof Bus bus) {
       return brand.equals(bus.brand)
-          && Double.compare(height, bus.height) ==0;
+          && Double.compare(height, bus.height) == 0;
     }
     return false;
   }
@@ -331,7 +334,7 @@ record Bus(String brand, double height) {
       return false;
     }
     return brand.equals(author.bran)
-        && Double.compare(height, bus.height) ==0;
+        && Double.compare(height, bus.height) == 0;
   }
 }
 
@@ -345,7 +348,7 @@ public double add(Object o1, Object o2) {
 
 // ## Even funnier
 public void loop(Object o) {
-  while((o instanceof Boolean) && o) {
+  while((o instanceof Boolean b) && b) {
     System.out.println(o);
     o = false;
   }
@@ -377,7 +380,6 @@ System.out.println(brand + " " + color);
 // ## Use destructuring
 // ```java
 // record Car(String brand, String color) {}
-//
 // var car = new Car("imperial", "red");
 // Car(String owner, String color) = car;
 // System.out.println(owner + " " + color);
@@ -387,7 +389,6 @@ System.out.println(brand + " " + color);
 // Reusing `var` and `_`
 // ```java
 // record Car(String brand, String color) {}
-//
 // var car = new Car("imperial", "red");
 // Car(_, var color) = car;
 // System.out.println(color);
@@ -399,7 +400,6 @@ System.out.println(brand + " " + color);
 // Removing the name of the type which can be inferred too
 // ```java
 // record Car(String brand, String color) {}
-//
 // Car car = ("imperial", "red");   // inference
 // (_, var color) = car;            // inference
 // System.out.println(color);
@@ -429,7 +429,7 @@ System.out.println(brand + " " + color);
 
 // ## And inferring a structural common super type
 // ```java
-// String ownerOf(Vehicle vehicle) {
+// String brand(Vehicle vehicle) {
 //   return switch(vehicle) {
 //     case Car(var brand, _), Bus(var brand, _) -> brand;
 //   };  //no default
@@ -449,4 +449,3 @@ System.out.println(brand + " " + color);
 // - __constant pattern__ (`123`) match the constant value
 
 // `var` or `_` are just inference, no special matching
-
