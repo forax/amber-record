@@ -115,7 +115,7 @@ color("sedan");
 // ## Expression Switch
 // switch can be used as an expression
 // `default` is mandatory !
-void color(String vehicle) {
+String color(String vehicle) {
   return switch(vehicle) {
     case "car", "sedan" -> {
       var length = vehicle.length();
@@ -209,15 +209,13 @@ System.out.println(components);
 
 // ## Closed hierarchy
 // Add a keyword `sealed` + a `permits` list
-
-sealed interface Vehicle
-  permits Car, Bus { }
 record Car(String brand, String color) implements Vehicle { }
 record Bus(String brand, double height) implements Vehicle { }
+sealed interface Vehicle
+  permits Car, Bus { }
 
 // ## Add inference of `permits` clause ?
 // The clause `permits` is inferred if everything in the same compilation unit
-
 sealed interface Vehicle {
    // inferred permits Car, Bus
   record Car(String brand, String color) implements Vehicle { }
@@ -250,7 +248,7 @@ record Bus(String brand, double height) {
     }
     var bus = (Bus) o;   // <-- that cast
     return brand.equals(bus.brand)
-        && Double.equals(height, bus.height);
+        && Double.compare(height, bus.height) ==0;
   }
 }
 
@@ -265,7 +263,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus bus
         && brand.equals(bus.brand)
-        && Double.equals(height, bus.height);
+        && Double.compare(height, bus.height) ==0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -277,7 +275,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus(String brand2, double height2)
       && brand.equals(brand2)
-      && Double.equals(height, height2);
+      && Double.compare(height, height2) ==0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -289,7 +287,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o) {
     return o instanceof Bus(var brand2, var height2)
       && brand.equals(brand2)
-      && Double.equals(height, height2);
+      && Double.compare(height, height2) ==0;
   }
 }
 var bus = new Bus("imperial", 7);
@@ -302,7 +300,7 @@ record Bus(String brand, double height) {
   public boolean equals(Object o){
     if (o instanceof Bus bus) {
       return brand.equals(bus.brand)
-          && Double.equals(height, bus.height);
+          && Double.compare(height, bus.height) ==0;
     }
     return false;
   }
@@ -315,7 +313,7 @@ record Bus(String brand, double height) {
       return false;
     }
     return brand.equals(author.bran)
-        && Double.equals(height, bus.height);
+        && Double.compare(height, bus.height) ==0;
   }
 }
 

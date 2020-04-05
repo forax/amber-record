@@ -1,4 +1,4 @@
-# Configuation of build.java
+# Configuation of publish.java
 # 1. generate files
 # generate=x,y,z with x, y or z among markdown, notebook and slideshow
 # 2. choose to generate an index (optional)

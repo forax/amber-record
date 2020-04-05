@@ -20,7 +20,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("preview")
-class build {
+class publish {
   final static class TextBuilder {
     private final StringBuilder builder = new StringBuilder();
     
@@ -506,7 +506,7 @@ class build {
   }
   
   public static void main(String[] args) throws IOException {
-    var config = Config.load(Path.of("build.property"));
+    var config = Config.load(Path.of("publish.property"));
     
     // create folders
     for(var kind: config.kinds) {

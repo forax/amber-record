@@ -16,4 +16,4 @@ install:
 script:
   - ./pro/bin/pro
   - npm bin
-  - java build/print_slideshow.java
+  - java publish/print_slideshow.java

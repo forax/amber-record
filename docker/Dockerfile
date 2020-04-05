@@ -10,7 +10,7 @@ RUN ([ -f docker/requirements.txt ] \
     && pip3 install --no-cache-dir -r docker/requirements.txt) \
         || pip3 install --no-cache-dir jupyter RISE
 
-# add pro, use as java distrib
+# add pro, and use it as java distrib
 RUN java pro_wrapper.java
 ENV JAVA_HOME ./pro/bin/java
 
