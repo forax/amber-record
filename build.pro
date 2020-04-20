@@ -5,13 +5,13 @@ resolver.
     checkForUpdate(true).
     dependencies(
         // JUnit 5
-        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.6.0",
-        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.6.0",
+        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.6.2",
+        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.6.2",
         "org.apiguardian.api=org.apiguardian:apiguardian-api:1.1.0",
         "org.opentest4j=org.opentest4j:opentest4j:1.2.0",
         
         // ASM 7.3.1
-        "org.objectweb.asm=org.ow2.asm:asm:7.3.1",
+        "org.objectweb.asm=org.ow2.asm:asm:8.0.1",
         
         // JMH
         "org.openjdk.jmh=org.openjdk.jmh:jmh-core:1.23",
