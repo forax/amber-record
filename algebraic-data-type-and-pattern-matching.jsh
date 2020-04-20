@@ -276,8 +276,6 @@ record Bus(String brand, double height) {
 // > The VM routinely removes it, so it's not present
 // > in the generated assembly code
 
-// # Type test Pattern
-
 // ## Type test pattern
 // Declare a variable available if the `instanceof` is true
 record Bus(String brand, double height) {
@@ -426,16 +424,6 @@ System.out.println(brand + " " + color);
 //   };  //no default
 // }
 // ```
-
-// ## And inferring a structural common super type
-// ```java
-// String brand(Vehicle vehicle) {
-//   return switch(vehicle) {
-//     case Car(var brand, _), Bus(var brand, _) -> brand;
-//   };  //no default
-// }
-// ```
-
 
 // # Conclusion: Full Pattern Matching
 
