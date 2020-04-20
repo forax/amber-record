@@ -289,31 +289,6 @@ var bus = new Bus("imperial", 7);
 var bus2 = new Bus("imperial", 7);
 System.out.println(bus.equals(bus2));
 
-// ## Deconstructing
-record Bus(String brand, double height) {
-  public boolean equals(Object o) {
-    return o instanceof Bus(String brand2, double height2)
-      && brand.equals(brand2)
-      && Double.compare(height, height2) == 0;
-  }
-}
-var bus = new Bus("imperial", 7);
-var bus2 = new Bus("imperial", 7);
-System.out.println(bus.equals(bus2));
-
-// ## Deconstructing + var
-record Bus(String brand, double height) {
-  public boolean equals(Object o) {
-    return o instanceof Bus(var brand2, var height2)
-      && brand.equals(brand2)
-      && Double.compare(height, height2) == 0;
-  }
-}
-var bus = new Bus("imperial", 7);
-var bus2 = new Bus("imperial", 7);
-System.out.println(bus.equals(bus2));
-
-
 // ## Type test vs Code block
 record Bus(String brand, double height) {
   public boolean equals(Object o){
@@ -354,7 +329,7 @@ public void loop(Object o) {
 loop(true);
 
 
-// # Future
+// # Future ?
 
 // ## Switch on types
 // ```java
@@ -424,6 +399,34 @@ System.out.println(brand + " " + color);
 //   };  //no default
 // }
 // ```
+
+// ## Deconstructing instanceof
+// ```java
+// record Bus(String brand, double height) {
+//  public boolean equals(Object o) {
+//    return o instanceof Bus(String brand2, double height2)
+//      && brand.equals(brand2)
+//      && Double.compare(height, height2) == 0;
+//  }
+//}
+//var bus = new Bus("imperial", 7);
+//var bus2 = new Bus("imperial", 7);
+//System.out.println(bus.equals(bus2));
+//```
+
+// ## Deconstructing + var
+// ```java
+// record Bus(String brand, double height) {
+//  public boolean equals(Object o) {
+//    return o instanceof Bus(var brand2, var height2)
+//      && brand.equals(brand2)
+//      && Double.compare(height, height2) == 0;
+//  }
+//}
+//var bus = new Bus("imperial", 7);
+//var bus2 = new Bus("imperial", 7);
+//System.out.println(bus.equals(bus2));
+//```
 
 // # Conclusion: Full Pattern Matching
 
