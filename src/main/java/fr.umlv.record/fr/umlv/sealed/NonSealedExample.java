@@ -11,7 +11,7 @@ public class NonSealedExample {
   public static void main(String[] args) {
 		I i = new A();
   	
-		var permitted = I.class.getPermittedSubtypes();
+		var permitted = I.class.permittedSubclasses();
 		System.out.println(Arrays.toString(permitted));
 	}
 }
