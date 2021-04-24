@@ -5,7 +5,7 @@ services:
   - docker
 
 before_install:
-  - nvm use 14
+  - nvm install 14
   - sudo apt-get install npm
   - docker build -f docker/Dockerfile -t forax/amber-record .
   - docker run -d -p 8888:8888 forax/amber-record bash travis/script.sh
